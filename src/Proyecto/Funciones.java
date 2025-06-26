@@ -1,10 +1,10 @@
 package Proyecto;
 
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
-import static Proyecto.Main.clientes;
-import static Proyecto.Main.pajaros;
+import static Proyecto.Main.*;
 
 public class Funciones {
 static Scanner teclado = new Scanner(System.in);
@@ -26,8 +26,9 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("### Gestión de Clientes ###");
         System.out.println("1. Alta.");
         System.out.println("2. Baja. ");
-        System.out.println("3. Modificación. ");
-        System.out.println("4. Listado. ");
+        System.out.println("3. Busqueda por DNI. ");
+        System.out.println("4. Modificación. ");
+        System.out.println("5. Listado. ");
         System.out.println("Elige un índice. ");
         int option = teclado.nextInt();
         teclado.nextLine();
@@ -44,6 +45,22 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("Email: ");
         String email = teclado.nextLine();
         clientes.add(new Cliente(nombre, dni, telefono, email));
+    }
+
+    public static void buscarPorDni(){
+        System.out.println("Dime el DNI que quieres buscar en la base de datos");
+        boolean encontrado = false;
+        String dniBuscado = teclado.nextLine();
+        for (Cliente cliente : clientes){
+            if (cliente.getDni().equalsIgnoreCase(dniBuscado)){
+                encontrado = true;
+                System.out.println("¡Cliente encontrado!");
+                System.out.println(cliente.getNombre() + ", " + cliente.getDni() + ", " + cliente.getEmail() +", " + cliente.getTelefono());
+            }
+        }
+        if (!encontrado){
+            System.out.println("El Dni buscado no se encuentra en nuestra base de datos. ");
+        }
     }
 
     public static void bajaCliente(){
@@ -78,8 +95,9 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("### Gestión de Pájaros ###");
         System.out.println("1. Alta.");
         System.out.println("2. Baja. ");
-        System.out.println("3. Modificación precio. ");
-        System.out.println("4. Listado. ");
+        System.out.println("3. Busqueda por especie. ");
+        System.out.println("4. Modificación precio. ");
+        System.out.println("5. Listado. ");
         System.out.println("Elige un índice. ");
         int option = teclado.nextInt();
         teclado.nextLine();
@@ -103,6 +121,23 @@ static Scanner teclado = new Scanner(System.in);
         pajaros.remove(indicePajaro);
     }
 
+    public static void buscarPorEspecie(){
+        System.out.println("Dime la especie que quieres buscar en la base de datos");
+        boolean encontrado = false;
+        String especieBuscada = teclado.nextLine();
+        for (Pajaro pajaro : pajaros){
+            if (pajaro.getEspecie().equalsIgnoreCase(especieBuscada)){
+                System.out.println("¡Pájaro encontrado!");
+                System.out.println(pajaro.getEspecie() + ", " + pajaro.getPrecio() + ", " + pajaro.getColor());
+                encontrado = true;
+            }
+
+        }
+        if (!encontrado){
+            System.out.println("La especie buscada no se encuentra en nuestro catálogo. ");
+        }
+    }
+
     public static void modificarPrecioPajaro(){
         listaPajaros();
         System.out.println("¿Que índice de pajaro quieres cambiar el precio?");
@@ -120,5 +155,45 @@ static Scanner teclado = new Scanner(System.in);
             Pajaro pajaro = pajaros.get(i);
             System.out.println((i+1)+ ". " + pajaro.getEspecie() + ", " + pajaro.getColor() + ", " + pajaro.getPrecio() + " € "  );
         }
+    }
+
+    //Apartado Ventas
+
+    public static int gestionVentas(){
+        System.out.println("### Gestión de Ventas###");
+        System.out.println("1. Nueva venta.");
+        System.out.println("2. Mostras ventas realizadas. ");
+        System.out.println("3. Mostrar ventas por cliente. ");
+        System.out.println("4. Mostrar importe de cada venta. ");
+        System.out.println("Elige un índice. ");
+        int option = teclado.nextInt();
+        teclado.nextLine();
+        return option;
+    }
+
+    /*public static void nuevaVenta(){
+        System.out.println("Por favor, elige un cliente por su índice");
+        System.out.println("Recuerda darle de alta en el apartado clientes");
+        listaClientes();
+        int indiceCliente = teclado.nextInt() -1;
+        System.out.println("Ahora dime el índice del pájaro. ");
+        listaPajaros();
+        int indicePajaros = teclado.nextInt() -1;
+        Pajaro pajaro = pajaros.get(indicePajaros);
+        LocalDate hoy = LocalDate.now();
+        Cliente cliente  = clientes.get(indiceCliente);
+
+    }*/
+
+    public static void ventasRealizadas(){
+
+    }
+
+    public static void ventasPorCliente(){
+
+    }
+
+    public static void importeTotalVenta(){
+
     }
 }

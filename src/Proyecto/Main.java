@@ -23,8 +23,9 @@ public class Main {
                     switch (option){
                         case 1 -> altaCliente();
                         case 2 -> bajaCliente();
-                        case 3 -> modificarTelefono();
-                        case 4 -> listaClientes();
+                        case 3 -> buscarPorDni();
+                        case 4 -> modificarTelefono();
+                        case 5 -> listaClientes();
                     }
                 }
                 case 2 -> {
@@ -32,8 +33,18 @@ public class Main {
                     switch (option){
                         case 1 -> altaPajaro();
                         case 2 -> bajaPajaro();
-                        case 3 -> modificarPrecioPajaro();
-                        case 4 -> listaPajaros();
+                        case 3 -> buscarPorEspecie();
+                        case 4 -> modificarPrecioPajaro();
+                        case 5 -> listaPajaros();
+                    }
+                }
+                case 3 -> {
+                    int option = gestionVentas();
+                    switch (opcion){
+                        case 1 -> nuevaVenta();
+                        case 2 -> ventasRealizadas();
+                        case 3 -> ventasPorCliente();
+                        case 4 -> importeTotalVenta();
                     }
 
                 }
