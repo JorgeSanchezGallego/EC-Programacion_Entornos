@@ -40,7 +40,7 @@ public class Main {
                 }
                 case 3 -> {
                     int option = gestionVentas();
-                    switch (opcion){
+                    switch (option){
                         case 1 -> nuevaVenta();
                         case 2 -> ventasRealizadas();
                         case 3 -> ventasPorCliente();

@@ -2,9 +2,11 @@ package Proyecto;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Proyecto.Main.*;
+import static Proyecto.Venta.*;
 
 public class Funciones {
 static Scanner teclado = new Scanner(System.in);
@@ -171,19 +173,38 @@ static Scanner teclado = new Scanner(System.in);
         return option;
     }
 
-    /*public static void nuevaVenta(){
-        System.out.println("Por favor, elige un cliente por su índice");
-        System.out.println("Recuerda darle de alta en el apartado clientes");
-        listaClientes();
-        int indiceCliente = teclado.nextInt() -1;
-        System.out.println("Ahora dime el índice del pájaro. ");
-        listaPajaros();
-        int indicePajaros = teclado.nextInt() -1;
-        Pajaro pajaro = pajaros.get(indicePajaros);
-        LocalDate hoy = LocalDate.now();
-        Cliente cliente  = clientes.get(indiceCliente);
 
-    }*/
+
+    public static void nuevaVenta() {
+        if (clientes.isEmpty() || pajaros.isEmpty()) {
+            System.out.println("Lista de clientes o lista de pájaros vacia. ");
+            return;
+        }
+        System.out.println("Elige un cliente por índice. ");
+        listaClientes();
+        int posicionCliente = teclado.nextInt() -1;
+        teclado.nextLine();
+        if (posicionCliente < 0 || posicionCliente >= clientes.size())return;
+        Cliente clientePosicion = clientes.get(posicionCliente);
+        Venta venta = new Venta(clientePosicion);
+
+        int opcion = 1;
+        while (opcion == 1){
+            System.out.println("Añade un pájaro a tu cliente. ");
+            listaPajaros();
+            int posicionPajaro = teclado.nextInt() -1;
+            teclado.nextLine();
+            if (posicionPajaro >= 0 && posicionPajaro < pajaros.size()){
+                venta.añadirPajaro(pajaros.get(posicionPajaro));
+            }
+            System.out.println("¿Desea añadir otro pájaro? 1 para seguir añadiendo. ");
+            opcion = teclado.nextInt();
+        }
+        ventas.add(venta);
+        System.out.println("Añadiendo venta...");
+    }
+
+
 
     public static void ventasRealizadas(){
 

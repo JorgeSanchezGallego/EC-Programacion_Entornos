@@ -15,5 +15,13 @@ public class Venta {
         this.fecha = fecha;
     }
 
+    public void setLineasDeVenta(ArrayList<Pajaro> lineasDeVenta) {
+        this.lineasDeVenta = lineasDeVenta;
+    }
+
+    public static void añadirPajaro(Pajaro pajaro){
+        ArrayList<Pajaro> ventaPajaro = new ArrayList<>();
+        ventaPajaro.add(pajaro);
+    }
 
 }
