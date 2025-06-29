@@ -28,4 +28,13 @@ public class Pajaro {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    @Override
+    public String toString() {
+        return "Pajaro" +
+                "Especie: " + especie + '\'' +
+                ", Color: " + color + '\'' +
+                ", Precio: " + precio
+                ;
+    }
 }

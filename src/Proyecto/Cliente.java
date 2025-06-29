@@ -38,4 +38,14 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "Nombre:" + nombre + '\'' +
+                ", Dni=" + dni + '\'' +
+                ", Télefono=" + telefono + '\'' +
+                ", Email='" + email + '\'' +
+                '}';
+    }
 }

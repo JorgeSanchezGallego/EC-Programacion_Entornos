@@ -2,6 +2,8 @@ package Proyecto;
 
 import java.util.ArrayList;
 
+import static Proyecto.Main.ventas;
+
 public class Venta {
     //Atributos
     private Cliente cliente;
@@ -12,16 +14,36 @@ public class Venta {
     public Venta(Cliente cliente) {
         this.cliente = cliente;
         this.lineasDeVenta = new ArrayList<>();
-        this.fecha = fecha;
     }
 
     public void setLineasDeVenta(ArrayList<Pajaro> lineasDeVenta) {
         this.lineasDeVenta = lineasDeVenta;
     }
 
-    public static void añadirPajaro(Pajaro pajaro){
-        ArrayList<Pajaro> ventaPajaro = new ArrayList<>();
-        ventaPajaro.add(pajaro);
+    public void añadirPajaro(Pajaro pajaro){
+        lineasDeVenta.add(pajaro);
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public ArrayList<Pajaro> getLineasDeVenta() {
+        return lineasDeVenta;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "cliente=" + cliente +
+                ", lineasDeVenta=" + lineasDeVenta +
+                ", fecha='" + fecha + '\'' +
+                '}';
+    }
 }

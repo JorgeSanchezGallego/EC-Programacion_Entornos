@@ -196,10 +196,15 @@ static Scanner teclado = new Scanner(System.in);
             teclado.nextLine();
             if (posicionPajaro >= 0 && posicionPajaro < pajaros.size()){
                 venta.añadirPajaro(pajaros.get(posicionPajaro));
+                pajaros.remove(posicionPajaro);
+
+
             }
             System.out.println("¿Desea añadir otro pájaro? 1 para seguir añadiendo. ");
             opcion = teclado.nextInt();
+            teclado.nextLine();
         }
+
         ventas.add(venta);
         System.out.println("Añadiendo venta...");
     }
@@ -207,7 +212,10 @@ static Scanner teclado = new Scanner(System.in);
 
 
     public static void ventasRealizadas(){
-
+        for (Venta venta : ventas){
+            System.out.println("Cliente: " + venta.getCliente());
+            System.out.println("Líneas de venta: " + venta.getLineasDeVenta());
+        }
     }
 
     public static void ventasPorCliente(){
