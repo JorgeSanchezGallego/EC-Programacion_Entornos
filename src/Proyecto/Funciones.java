@@ -17,8 +17,7 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("1. Gestión de clientes.");
         System.out.println("2. Gestión de pájaros.");
         System.out.println("3. Realizar venta.");
-        System.out.println("4. Mostrar ventas.");
-        System.out.println("5. Salir.");
+        System.out.println("4. Salir.");
         System.out.println("Elige un índice.");
     }
 
@@ -166,7 +165,7 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("1. Nueva venta.");
         System.out.println("2. Mostras ventas realizadas. ");
         System.out.println("3. Mostrar ventas por cliente. ");
-        System.out.println("4. Mostrar importe de cada venta. ");
+        System.out.println("4. Mostrar dinero registrado. ");
         System.out.println("Elige un índice. ");
         int option = teclado.nextInt();
         teclado.nextLine();
@@ -219,10 +218,43 @@ static Scanner teclado = new Scanner(System.in);
     }
 
     public static void ventasPorCliente(){
+        listaClientes();
+        int posicionCliente = teclado.nextInt() -1;
+        teclado.nextLine();
+
+
+        if (posicionCliente < 0 || posicionCliente >= clientes.size()) {
+            System.out.println("Posición inválida.");
+            return;
+        }
+        Cliente clienteSeleccionado = clientes.get(posicionCliente);
+        boolean existeVenta = false;
+
+        System.out.println("Ventas del cliente: " + clienteSeleccionado.getNombre());
+        for (Venta venta : ventas){
+            if (venta.getCliente().equals(clienteSeleccionado)){
+                System.out.println(venta);
+                existeVenta = true;
+            }
+
+        }
+        if (!existeVenta){
+            System.out.println("Este cliente no tiene ventas registradas. ");
+        }
 
     }
 
     public static void importeTotalVenta(){
+        double totalDiferentesClientes = 0;
+        for (Venta venta : ventas){
+            double totalVenta = 0;
+            for (Pajaro pajaro : venta.getLineasDeVenta()){
+                totalVenta += pajaro.getPrecio();
+            }
 
+            totalDiferentesClientes += totalVenta;
+
+        }
+        System.out.println("Total de ventas: " + totalDiferentesClientes + " €");
     }
 }

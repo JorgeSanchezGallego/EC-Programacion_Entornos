@@ -28,9 +28,7 @@ public class Venta {
         return cliente;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
+
 
     public ArrayList<Pajaro> getLineasDeVenta() {
         return lineasDeVenta;
@@ -43,7 +41,6 @@ public class Venta {
         return "Venta{" +
                 "cliente=" + cliente +
                 ", lineasDeVenta=" + lineasDeVenta +
-                ", fecha='" + fecha + '\'' +
                 '}';
     }
 }
