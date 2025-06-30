@@ -1,6 +1,7 @@
 package Proyecto;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static Proyecto.Funciones.*;
@@ -15,8 +16,14 @@ public class Main {
         int opcion;
 
         do {
-            Funciones.menuPrincipal();
-            opcion = teclado.nextInt();
+            menuPrincipal();
+            try {
+                opcion = teclado.nextInt();
+            } catch (InputMismatchException e){
+                System.out.println("Por favor, introduce un índice valido. ");
+                teclado.nextLine();
+                opcion = -1;
+            }
             switch (opcion){
                 case 1 -> {
                     int option = gestionClientes();
@@ -26,6 +33,7 @@ public class Main {
                         case 3 -> buscarPorDni();
                         case 4 -> modificarTelefono();
                         case 5 -> listaClientes();
+                        default -> System.out.println("Opción invalida. ");
                     }
                 }
                 case 2 -> {
@@ -36,6 +44,7 @@ public class Main {
                         case 3 -> buscarPorEspecie();
                         case 4 -> modificarPrecioPajaro();
                         case 5 -> listaPajaros();
+                        default -> System.out.println("Opción invalida. ");
                     }
                 }
                 case 3 -> {
@@ -45,9 +54,13 @@ public class Main {
                         case 2 -> ventasRealizadas();
                         case 3 -> ventasPorCliente();
                         case 4 -> importeTotalVenta();
+                        default -> System.out.println("Opción invalida. ");
                     }
-
                 }
+                case 4 ->{
+                    System.out.println("Adiós, gracias por usar nuestro programa de ventas. ");
+                }
+                default -> System.out.println("Opción invalida. ");
             }
 
         } while (opcion !=4);

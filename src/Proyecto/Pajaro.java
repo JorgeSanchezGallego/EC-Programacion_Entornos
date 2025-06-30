@@ -31,8 +31,8 @@ public class Pajaro {
 
     @Override
     public String toString() {
-        return "Pajaro" +
-                "Especie: " + especie + '\'' +
+        return "Pajaro:" +
+                " Especie: " + especie + '\'' +
                 ", Color: " + color + '\'' +
                 ", Precio: " + precio
                 ;

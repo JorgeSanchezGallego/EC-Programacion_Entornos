@@ -38,8 +38,8 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" +
-                "cliente=" + cliente +
+        return
+                  cliente +
                 ", lineasDeVenta=" + lineasDeVenta +
                 '}';
     }

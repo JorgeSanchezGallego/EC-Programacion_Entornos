@@ -1,8 +1,9 @@
 package Proyecto;
 
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static Proyecto.Main.*;
@@ -16,7 +17,7 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("### MENÚ PRINCIPAL ###");
         System.out.println("1. Gestión de clientes.");
         System.out.println("2. Gestión de pájaros.");
-        System.out.println("3. Realizar venta.");
+        System.out.println("3. Gestión de ventas.");
         System.out.println("4. Salir.");
         System.out.println("Elige un índice.");
     }
@@ -31,9 +32,18 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("4. Modificación. ");
         System.out.println("5. Listado. ");
         System.out.println("Elige un índice. ");
-        int option = teclado.nextInt();
-        teclado.nextLine();
-        return option;
+        try {
+            int option = teclado.nextInt();
+            teclado.nextLine();
+            return option;
+        } catch (InputMismatchException e){
+            System.out.println("Por favor, introduce un índice. ");
+            return -1;
+
+
+        }
+
+
     }
 
     public static void altaCliente(){
@@ -46,6 +56,7 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("Email: ");
         String email = teclado.nextLine();
         clientes.add(new Cliente(nombre, dni, telefono, email));
+        System.out.println("Cliente añadido. ");
     }
 
     public static void buscarPorDni(){
@@ -67,19 +78,40 @@ static Scanner teclado = new Scanner(System.in);
     public static void bajaCliente(){
         listaClientes();
         System.out.println("¿Que índice de cliente quieres borrar?");
-        int indiceCliente = teclado.nextInt() -1;
-        clientes.remove(indiceCliente);
+        try {
+            int indiceCliente = teclado.nextInt() - 1;
+            teclado.nextLine();
+            System.out.println("Borrando cliente: " + clientes.get(indiceCliente).getNombre());
+            clientes.remove(indiceCliente);
+            System.out.println("Cliente borrado. ");
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Índice invalido. ");
+        } catch (InputMismatchException e){
+            System.out.println("Por favor, introduce un índice");
+            teclado.nextLine();
+        }
     }
 
     public static void modificarTelefono(){
         listaClientes();
         System.out.println("¿Que índice de cliente quieres cambiar el teléfono?");
-        int indiceCliente = teclado.nextInt() -1;
-        teclado.nextLine();
-        System.out.println("¿Cúal es el nuevo teléfono?");
-        String nuevoTelefono = teclado.nextLine();
-        Cliente cliente = clientes.get(indiceCliente);
-        cliente.setTelefono(nuevoTelefono);
+
+        try {
+            int indiceCliente = teclado.nextInt() -1;
+            teclado.nextLine();
+            if (indiceCliente < 0 || indiceCliente >= clientes.size()){
+                System.out.println("Índice invalido. ");
+                return;
+            }
+            System.out.println("¿Cúal es el nuevo teléfono?");
+            String nuevoTelefono = teclado.nextLine();
+            Cliente cliente = clientes.get(indiceCliente);
+            cliente.setTelefono(nuevoTelefono);
+            System.out.println("Teléfono modificado. ");
+        } catch (InputMismatchException e){
+            System.out.println("Introduce una cadena de números. ");
+            teclado.nextLine();
+        }
 
     }
 
@@ -100,9 +132,15 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("4. Modificación precio. ");
         System.out.println("5. Listado. ");
         System.out.println("Elige un índice. ");
-        int option = teclado.nextInt();
-        teclado.nextLine();
-        return option;
+        try {
+            int option = teclado.nextInt();
+            teclado.nextLine();
+            return option;
+        } catch (InputMismatchException e){
+            System.out.println("Por favor, introduce un índice.");
+            return -1;
+        }
+
     }
 
     public static void altaPajaro(){
@@ -111,15 +149,30 @@ static Scanner teclado = new Scanner(System.in);
         System.out.println("Color: ");
         String color = teclado.nextLine();
         System.out.println("Precio: ");
-        double precio = teclado.nextDouble();
-        pajaros.add(new Pajaro(especie, color, precio));
+        try {
+            double precio = teclado.nextDouble();
+            teclado.nextLine();
+            pajaros.add(new Pajaro(especie, color, precio));
+            System.out.println("Pájaro añadido. ");
+        } catch (InputMismatchException e){
+            System.out.println("Por favor, introduce un número. ");
+            teclado.nextLine();
+        }
+
     }
 
     public static void bajaPajaro(){
         listaPajaros();
         System.out.println("¿Que índice de pájaro quieres borrar?");
-        int indicePajaro = teclado.nextInt() -1;
-        pajaros.remove(indicePajaro);
+        try {
+            int indicePajaro = teclado.nextInt() -1;
+            teclado.nextLine();
+            pajaros.remove(indicePajaro);
+            System.out.println("Pájaro eliminado. ");
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Índice invalido. ");
+        }
+
     }
 
     public static void buscarPorEspecie(){
@@ -142,13 +195,27 @@ static Scanner teclado = new Scanner(System.in);
     public static void modificarPrecioPajaro(){
         listaPajaros();
         System.out.println("¿Que índice de pajaro quieres cambiar el precio?");
-        int indicePajaro = teclado.nextInt() -1;
-        teclado.nextLine();
-        System.out.println("¿Cúal es el nuevo precio?");
-        double nuevoPrecio = teclado.nextDouble();
-        teclado.nextLine();
-        Pajaro pajaro = pajaros.get(indicePajaro);
-        pajaro.setPrecio(nuevoPrecio);
+        try {
+            int indicePajaro = teclado.nextInt() - 1;
+            teclado.nextLine();
+            if (indicePajaro < 0 || indicePajaro >= pajaros.size()){
+                System.out.println("Índice invalido. ");
+                return;
+            }
+            System.out.println("¿Cúal es el nuevo precio?");
+            double nuevoPrecio = teclado.nextDouble();
+            teclado.nextLine();
+            if (nuevoPrecio <= 0){
+                System.out.println("El precio no puede ser 0 o menor. ");
+                return;
+            }
+            Pajaro pajaro = pajaros.get(indicePajaro);
+            pajaro.setPrecio(nuevoPrecio);
+            System.out.println("Precio actualizado. ");
+        } catch (InputMismatchException e){
+            System.out.println("Por favor, introduce un número. ");
+            teclado.nextLine();
+        }
     }
 
     public static void listaPajaros(){
@@ -198,10 +265,13 @@ static Scanner teclado = new Scanner(System.in);
                 pajaros.remove(posicionPajaro);
 
 
+            } if (pajaros.isEmpty()){
+                break;
+            } else {
+                System.out.println("¿Desea añadir otro pájaro? 1 para seguir añadiendo. ");
+                opcion = teclado.nextInt();
+                teclado.nextLine();
             }
-            System.out.println("¿Desea añadir otro pájaro? 1 para seguir añadiendo. ");
-            opcion = teclado.nextInt();
-            teclado.nextLine();
         }
 
         ventas.add(venta);
