@@ -1,8 +1,6 @@
-package Proyecto;
+package main;
 
 import java.util.ArrayList;
-
-import static Proyecto.Main.ventas;
 
 public class Venta {
     //Atributos

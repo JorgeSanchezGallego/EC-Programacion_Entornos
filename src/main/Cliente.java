@@ -1,4 +1,4 @@
-package Proyecto;
+package main;
 
 public class Cliente {
     //Atributos

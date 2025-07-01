@@ -1,10 +1,10 @@
-package Proyecto;
+package main;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Proyecto.Funciones.*;
+import static main.Funciones.*;
 
 public class Main {
     static ArrayList<Cliente> clientes = new ArrayList<>();

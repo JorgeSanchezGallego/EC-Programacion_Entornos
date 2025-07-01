@@ -1,13 +1,11 @@
-package Proyecto;
+package main;
 
 
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Proyecto.Main.*;
-import static Proyecto.Venta.*;
+import static main.Main.*;
 
 public class Funciones {
 static Scanner teclado = new Scanner(System.in);
