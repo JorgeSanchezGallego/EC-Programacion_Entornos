@@ -33,3 +33,6 @@ out/
 
 # Ignorar configuración de IDEs.
 .idea/
+
+# Archivos de configuración del módulo IntelliJ
+EC-Entornos-Programacion.iml
