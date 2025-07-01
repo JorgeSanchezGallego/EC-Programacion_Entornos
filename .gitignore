@@ -27,3 +27,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignorar carpeta de salida
+out/
+
+# Ignorar configuración de IDEs.
+.idea/
